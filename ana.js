@@ -48,3 +48,89 @@
     });
   });
 })();
+
+
+/* Akıcılık: yapışkan başlık, kaydırınca belirme, sayaçlar, paralaks, kart eğimi */
+(function () {
+  var azHareket = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fare = window.matchMedia && matchMedia("(pointer: fine)").matches;
+
+  var ust = document.querySelector(".ana .ust");
+  function ustGuncelle() { if (ust) ust.classList.toggle("kaydi", window.scrollY > 10); }
+
+  // Kaydırınca belirme
+  var hedefler = document.querySelectorAll(".kh-sol > *, .blok .ust-etiket, .blok h2, .blok .giris, .oz, #form-listesi .kart, .adimlar li, .tikler li, .sss details, .bant, .portre, .formsahne, .sahne.kucuk");
+  hedefler.forEach(function (el) {
+    var kardes = Array.prototype.indexOf.call(el.parentNode.children, el);
+    el.style.setProperty("--gecik", Math.min(kardes, 6) * 90 + "ms");
+    el.classList.add("gor");
+  });
+  function ac(el) {
+    el.classList.add("acik");
+    var b = el.querySelectorAll ? el.querySelectorAll("[data-say]") : [];
+    b.forEach(say);
+  }
+  if (azHareket || !("IntersectionObserver" in window)) {
+    hedefler.forEach(ac);
+  } else {
+    var io = new IntersectionObserver(function (girdiler) {
+      girdiler.forEach(function (g) { if (g.isIntersecting) { ac(g.target); io.unobserve(g.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    hedefler.forEach(function (el) { io.observe(el); });
+  }
+
+  // Sayaçlar
+  function say(el) {
+    if (el.dataset.sayildi || azHareket) return;
+    el.dataset.sayildi = 1;
+    var son = +el.dataset.say, ek = el.dataset.ek || "", t0 = null;
+    function adim(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1100, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(son * e) + ek;
+      if (p < 1) requestAnimationFrame(adim);
+    }
+    requestAnimationFrame(adim);
+  }
+
+  // Paralaks katmanları
+  var katmanlar = [];
+  if (!azHareket) {
+    document.querySelectorAll(".sahne").forEach(function (s) {
+      [[".b1", .05], [".b2", -.04], [".b3", .06], [".nokta", -.08], [".kisi", .015]].forEach(function (k) {
+        s.querySelectorAll(k[0]).forEach(function (el) { katmanlar.push({ el: el, hiz: k[1], sahne: s }); });
+      });
+    });
+  }
+  var bekliyor = false;
+  function kaydir() {
+    ustGuncelle();
+    katmanlar.forEach(function (k) {
+      var r = k.sahne.getBoundingClientRect();
+      var merkez = r.top + r.height / 2 - innerHeight / 2;
+      var v = Math.max(-36, Math.min(36, merkez * k.hiz));
+      k.el.style.translate = "0 " + v.toFixed(1) + "px";
+    });
+    bekliyor = false;
+  }
+  window.addEventListener("scroll", function () { if (!bekliyor) { bekliyor = true; requestAnimationFrame(kaydir); } }, { passive: true });
+  kaydir();
+
+  // Kart eğimi
+  if (fare && !azHareket) {
+    document.querySelectorAll(".oz, #form-listesi .kart").forEach(function (k) {
+      k.addEventListener("mousemove", function (e) {
+        var r = k.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        k.classList.add("egik");
+        k.style.setProperty("--egy", ((x - .5) * 14).toFixed(2) + "deg");
+        k.style.setProperty("--egx", ((.5 - y) * 12).toFixed(2) + "deg");
+        k.style.setProperty("--px", (x * 100).toFixed(1) + "%");
+        k.style.setProperty("--py", (y * 100).toFixed(1) + "%");
+      });
+      k.addEventListener("mouseleave", function () {
+        k.classList.remove("egik");
+        k.style.setProperty("--egx", "0deg"); k.style.setProperty("--egy", "0deg");
+      });
+    });
+  }
+})();

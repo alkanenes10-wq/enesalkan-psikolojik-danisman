@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Enes Alkan | YKS öğrencileri için danışmanlık ve akademik koçluk</title>
 <meta name="description" content="YKS'ye hazırlanan öğrenciler için BDT temelli online danışmanlık ve akademik koçluk. İrade değil, yöntem.">
@@ -37,8 +38,8 @@
           <a class="dugme ikincil" data-dm href="#">Instagram'dan yaz</a>
         </div>
         <div class="sayilar">
-          <div><b>15 dk</b><span>Ücretsiz ön görüşme</span></div>
-          <div><b>3 dk</b><span>Form süresi</span></div>
+          <div><b data-say="15" data-ek=" dk">15 dk</b><span>Ücretsiz ön görüşme</span></div>
+          <div><b data-say="3" data-ek=" dk">3 dk</b><span>Form süresi</span></div>
           <div><b>0</b><span>Kaydedilen yanıt</span></div>
         </div>
       </div>
@@ -55,10 +56,14 @@
             <span class="ikon"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><b>Sonucun hazır</b><small>Yalnızca sen görürsün</small></div>
           </div>
-          <div class="yuzen y2"><b>15 dk</b><small>Ücretsiz ön görüşme</small></div>
+          <div class="muhur">
+            <svg viewBox="0 0 200 200"><defs><path id="cember" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+              <text><textPath href="#cember" textLength="452" lengthAdjust="spacing">ÜCRETSİZ ÖN GÖRÜŞME • 15 DAKİKA • YÖNTEM •</textPath></text></svg>
+            <span>15<small>dk</small></span>
+          </div>
           <div class="yuzen y3">
             <small>Alanlara göre</small>
-            <div class="sutunlar"><i style="--h:82%"></i><i style="--h:40%;--c:var(--vurgu)"></i><i style="--h:62%"></i><i style="--h:28%;--c:#e3a07a"></i><i style="--h:70%;--c:var(--koyu)"></i></div>
+            <div class="sutunlar"><i style="--h:82%"></i><i style="--h:40%;--c:var(--vurgu)"></i><i style="--h:62%"></i><i style="--h:28%;--c:#9bb6ee"></i><i style="--h:70%;--c:var(--koyu)"></i></div>
           </div>
           <div class="yuzen y4">
             <small>Bu hafta</small>
@@ -71,8 +76,14 @@
     </div>
   </section>
 
+  <div class="kayanlar" aria-hidden="true">
+    <div class="kayan k1"><div class="kayan-ic"><span>Erteleme</span><span>Sınav kaygısı</span><span>Çalışma düzeni</span><span>Zaman yönetimi</span><span>Deneme stratejisi</span><span>Motivasyon</span><span>Erteleme</span><span>Sınav kaygısı</span><span>Çalışma düzeni</span><span>Zaman yönetimi</span><span>Deneme stratejisi</span><span>Motivasyon</span></div></div>
+    <div class="kayan k2"><div class="kayan-ic"><span>İrade değil, yöntem</span><span>BDT temelli</span><span>Kanıta dayalı</span><span>12. sınıf ve mezun</span><span>İrade değil, yöntem</span><span>BDT temelli</span><span>Kanıta dayalı</span><span>12. sınıf ve mezun</span></div></div>
+  </div>
+
   <section class="blok" id="konular">
     <div class="kap genis">
+      <span class="ust-etiket orta-blok">Konular</span>
       <h2 class="orta">Birlikte çalıştığımız konular</h2>
       <div class="ozler">
         <div class="oz"><span class="kup"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2M9 3h6"/></svg></span><h3>Erteleme</h3><p>Başlamayı kolaylaştıran küçük ve net adımlar.</p></div>
@@ -87,6 +98,7 @@
   <section class="blok zeminli" id="formlar">
     <div class="kap genis iki">
       <div>
+        <span class="ust-etiket">Formlar</span>
         <h2>Kısa formlarla nerede zorlandığını gör</h2>
         <p class="giris">Yanıtların kaydedilmez; sonuç yalnızca senin ekranında hesaplanır.</p>
         <div class="izgara" id="form-listesi"></div>
@@ -115,6 +127,7 @@
 
   <section class="blok" id="surec">
     <div class="kap genis">
+      <span class="ust-etiket orta-blok">Süreç</span>
       <h2 class="orta">Üç adımda nasıl işliyor?</h2>
       <div class="iki">
         <ol class="adimlar">
@@ -143,12 +156,13 @@
         <i class="halka"></i><i class="nokta n1"></i>
         <div class="daire">
           <img src="/enes.webp" alt="" onerror="this.remove()">
-          <svg viewBox="0 0 64 64"><g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M26 18H12v28h14M12 32h11"/><path d="M34 46l9-28 9 28"/></g><path d="M38.5 37h9" stroke="#c9783a" stroke-width="5" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 64 64"><g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M26 18H12v28h14M12 32h11"/><path d="M34 46l9-28 9 28"/></g><path d="M38.5 37h9" stroke="#8fb0ff" stroke-width="5" stroke-linecap="round"/></svg>
         </div>
         <div class="yuzen y5"><b>BDT temelli</b><small>Kanıta dayalı yöntem</small></div>
         <i class="top"></i>
       </div>
       <div>
+        <span class="ust-etiket">Hakkımda</span>
         <h2>Yönteme dayalı destek</h2>
         <p class="giris">Psikolojik Danışmanlık ve Rehberlik mezunuyum. YKS'ye hazırlanan öğrencilerle Bilişsel Davranışçı Terapi temelli, kanıta dayalı yöntemlerle çalışıyorum.</p>
         <ul class="tikler">
@@ -163,6 +177,7 @@
 
   <section class="blok" id="sss">
     <div class="kap genis">
+      <span class="ust-etiket orta-blok">Sorular</span>
       <h2 class="orta">Sık sorulan sorular</h2>
       <div class="sss">
         <details><summary>Formdaki yanıtlarım kaydediliyor mu?</summary><p>Hayır. Yanıtların ve puanın yalnızca kendi cihazında hesaplanır, hiçbir yere gönderilmez.</p></details>
