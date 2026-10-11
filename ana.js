@@ -34,7 +34,6 @@
 /* 3B sahne: fare hareketine göre hafif eğim (yalnızca fare olan cihazlarda) */
 (function () {
   if (!window.matchMedia || !matchMedia("(pointer: fine)").matches) return;
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   document.querySelectorAll(".sahne").forEach(function (s) {
     var ic = s.querySelector(".sahne-ic");
     s.addEventListener("mousemove", function (e) {
@@ -70,7 +69,7 @@
     var b = el.querySelectorAll ? el.querySelectorAll("[data-say]") : [];
     b.forEach(say);
   }
-  if (azHareket || !("IntersectionObserver" in window)) {
+  if (!("IntersectionObserver" in window)) {
     hedefler.forEach(ac);
   } else {
     var io = new IntersectionObserver(function (girdiler) {
@@ -81,7 +80,7 @@
 
   // Sayaçlar
   function say(el) {
-    if (el.dataset.sayildi || azHareket) return;
+    if (el.dataset.sayildi) return;
     el.dataset.sayildi = 1;
     var son = +el.dataset.say, ek = el.dataset.ek || "", t0 = null;
     function adim(t) {
@@ -117,7 +116,7 @@
   kaydir();
 
   // Kart eğimi
-  if (fare && !azHareket) {
+  if (fare) {
     document.querySelectorAll(".oz, #form-listesi .kart").forEach(function (k) {
       k.addEventListener("mousemove", function (e) {
         var r = k.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
@@ -133,4 +132,43 @@
       });
     });
   }
+})();
+
+
+/* Yumuşak kaydırma: fare tekerleğiyle kaydırırken sayfa adım adım değil, akarak ilerler */
+(function () {
+  if (!window.matchMedia || !matchMedia("(pointer: fine)").matches) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var kok = document.documentElement;
+  kok.classList.add("akici");
+  var hedef = window.scrollY, simdi = window.scrollY, calisiyor = false;
+  function sinir(v) { return Math.max(0, Math.min(v, kok.scrollHeight - innerHeight)); }
+  function dongu() {
+    simdi += (hedef - simdi) * 0.11;
+    if (Math.abs(hedef - simdi) < 0.5) { simdi = hedef; calisiyor = false; }
+    window.scrollTo(0, simdi);
+    if (calisiyor) requestAnimationFrame(dongu);
+  }
+  function git(y) {
+    hedef = sinir(y);
+    if (!calisiyor) { calisiyor = true; simdi = window.scrollY; requestAnimationFrame(dongu); }
+  }
+  window.addEventListener("wheel", function (e) {
+    if (e.ctrlKey || e.defaultPrevented) return;
+    e.preventDefault();
+    var d = e.deltaY * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerHeight : 1);
+    git((calisiyor ? hedef : window.scrollY) + d);
+  }, { passive: false });
+  // Klavye ya da kaydırma çubuğu ile kaydırılınca hedefi eşitle
+  window.addEventListener("scroll", function () { if (!calisiyor) { hedef = simdi = window.scrollY; } }, { passive: true });
+  // Menüdeki bağlantılar da aynı akışla gitsin
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.getAttribute("href").length < 2) return;
+    var el = document.querySelector(a.getAttribute("href"));
+    if (!el) return;
+    e.preventDefault();
+    git(el.getBoundingClientRect().top + window.scrollY - 80);
+    history.replaceState(null, "", a.getAttribute("href"));
+  });
 })();

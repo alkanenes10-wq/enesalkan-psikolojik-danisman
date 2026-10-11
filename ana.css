@@ -154,7 +154,7 @@ body.ana { background: var(--kart); overflow-x: hidden; }
 .bant p { opacity: .92; max-width: 500px; margin: 0 auto 24px; }
 .bant .kelime { background: rgba(255, 255, 255, .2); color: #fff; }
 
-@media (prefers-reduced-motion: reduce) { .yuzen, .balon { animation: none; } .sahne-ic { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .yuzen, .balon { animation-duration: 9s; } }
 @media (max-width: 980px) {
   .kh-izgara, .iki { grid-template-columns: 1fr; gap: 26px; }
   .ozler { grid-template-columns: repeat(2, 1fr); }
@@ -242,7 +242,9 @@ html { scroll-padding-top: 90px; }
   .k2 span { font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .muhur svg, .kayan-ic { animation: none; }
-  .js .gor { opacity: 1; translate: none; scale: none; transition: none; }
+  .muhur svg, .kayan-ic { animation-duration: 120s; }
+  .js .gor { translate: 0 14px; scale: 1; transition: opacity .7s ease, translate .7s ease; }
 }
 html:has(body.ana) { overflow-x: clip; } .ana main { overflow-x: clip; }
+
+html.akici { scroll-behavior: auto; }
