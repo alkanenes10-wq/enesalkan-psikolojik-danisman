@@ -143,7 +143,8 @@
         return { alan: al, deger: k ? t / k : 0 };
       });
       var kutu = el("div", "alanlar");
-      kutu.appendChild(el("h2", null, "Alanlara göre"));
+      kutu.appendChild(el("h2", null, "Alanlara göre zorlanma"));
+      kutu.appendChild(el("p", "alan-aciklama", "Çubuk uzadıkça o alanda daha çok zorlanıyorsun."));
       ort.forEach(function (o) {
         var satir = el("div", "alan");
         satir.appendChild(el("span", "alan-ad", o.alan.ad));
@@ -162,6 +163,27 @@
         kutu.appendChild(an);
       }
       p.appendChild(kutu);
+    }
+
+    if (window.SonucKodu && form.kod) {
+      var kodMetni = SonucKodu.uret(form, yanitlar);
+      var kk = el("div", "kod-kutu");
+      kk.appendChild(el("strong", null, "Sonuç kodun"));
+      var satir2 = el("div", "kod-satir");
+      var kodEl = el("code", null, kodMetni);
+      satir2.appendChild(kodEl);
+      var kb = el("button", "dugme ikincil kucuk", "Kopyala");
+      kb.type = "button";
+      kb.onclick = function () {
+        function tamam() { kb.textContent = "Kopyalandı"; setTimeout(function () { kb.textContent = "Kopyala"; }, 1800); }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(kodMetni).then(tamam, secip);
+        else secip();
+        function secip() { var r = document.createRange(); r.selectNodeContents(kodEl); var se = getSelection(); se.removeAllRanges(); se.addRange(r); kb.textContent = "Seçildi, kopyala"; }
+      };
+      satir2.appendChild(kb);
+      kk.appendChild(satir2);
+      kk.appendChild(el("p", null, "Ön görüşmede bu kodu bana gönderirsen yanıtlarını ayrıntılı değerlendirebilirim. Kod adını ya da kişisel bilgini içermez; yalnızca sen paylaşırsan bana ulaşır."));
+      p.appendChild(kk);
     }
 
     var d = el("div", "davet");

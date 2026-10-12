@@ -16,6 +16,9 @@ Yeni form eklediğinizde linki, ana sayfadaki kartı ve puan hesabı kendiliğin
 | Alan | Ne işe yarar | Örnek |
 |---|---|---|
 | `slug` | Linkin sonu. Küçük harf, boşluksuz, Türkçe karakter kullanmayın. | `"sinav-kaygisi"` → `siteniz.com/sinav-kaygisi` |
+| `kod` | Sonuç kodunun başındaki iki büyük harf. Her formda **farklı** olmalı. | `"SK"` |
+| `surum` | Maddeleri, sırasını ya da ters puanlamayı değiştirdiğinizde bir artırın. Eski kodlar o zaman uyarı verir. | `2` |
+| `amac` | Danışman ekranında görünen ön test ve son test amaçları. | `{ on: "...", son: "..." }` |
 | `baslik` | Formun adı | `"Sınav Kaygısı"` |
 | `altBaslik` | Başlığın altındaki küçük yazı | `"BDT temelli kendini değerlendirme formu"` |
 | `kisaAciklama` | Ana sayfadaki kartta görünen cümle | |
@@ -31,8 +34,8 @@ Yeni form eklediğinizde linki, ana sayfadaki kartı ve puan hesabı kendiliğin
 - En yüksek puan = madde sayısı × 5.
 - Aralıklar bu iki sayı arasını **boşluk bırakmadan** kaplamalı.
 
+12 maddelik form için: 12-28, 29-44, 45-60.
 10 maddelik form için: 10-23, 24-37, 38-50.
-8 maddelik form için: 8-18, 19-29, 30-40.
 
 ## Alt alanlar (isteğe bağlı)
 
@@ -43,6 +46,19 @@ Sonuç ekranında her alan için bir çubuk çıkar; en yüksek alanın `not` me
 
 Yanıt seçenekleri için `SECENEKLER_UYUM` (bana uyuyor/uymuyor) ya da `SECENEKLER_SIKLIK`
 (hiçbir zaman/her zaman) kullanabilirsiniz.
+
+## Danışman notu
+
+Her alanın `not` metnini öğrenci görür; `danisman` metnini yalnızca siz danışman ekranında görürsünüz.
+Danışman notuna o alan yüksek çıktığında hangi çalışmaya odaklanacağınızı yazın.
+
+## Sonuç kodu ve danışman ekranı
+
+- Öğrenci formu bitirince ekranda `SK2-421354213542-37` gibi bir sonuç kodu görür ve kopyalayabilir.
+- Öğrenci bu kodu size Instagram'dan gönderir.
+- `siteniz/danisman` adresini açıp kodu yapıştırın. Son test kodunu da girerseniz iki uygulama karşılaştırılır.
+- Kodlar yalnızca sizin tarayıcınızda çözülür; hiçbir yere kaydedilmez. Bu sayfa arama motorlarına kapalıdır.
+- Puanların tamamı “zorlanma” yönündedir: yüksek puan daha çok zorlanma, son testteki düşüş iyileşme demektir.
 
 ## Ters puanlanan madde
 

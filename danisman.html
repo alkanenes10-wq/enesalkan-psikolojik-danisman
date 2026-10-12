@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Danışman değerlendirme | Enes Alkan</title>
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/stil.css">
+<link rel="stylesheet" href="/danisman.css">
+</head>
+<body class="dn">
+<header class="ust">
+  <div class="kap genis-dn">
+    <a class="marka" href="/"><img src="/logo.svg" alt="" width="40" height="40"><span>Enes Alkan<small>Danışman değerlendirme ekranı</small></span></a>
+  </div>
+</header>
+<main class="kap genis-dn">
+  <section class="panel giris-panel">
+    <h1>Sonuç kodunu çöz</h1>
+    <p class="soluk">Öğrencinin gönderdiği kodu yapıştırın. Son test kodunu da girerseniz iki uygulama karşılaştırılır. Kodlar bu sayfada, sizin tarayıcınızda çözülür; hiçbir yere gönderilmez ya da kaydedilmez.</p>
+    <form id="kod-formu" autocomplete="off">
+      <div class="alanlar-giris">
+        <label>Ön test kodu<input id="on" placeholder="ör. SK2-421354213542-37" required></label>
+        <label>Son test kodu <span class="soluk">(isteğe bağlı)</span><input id="son" placeholder="ör. SK2-211232112321-55"></label>
+        <label>Öğrenci kodu <span class="soluk">(yalnızca çıktı için)</span><input id="ogrenci" placeholder="ör. Ö-014"></label>
+      </div>
+      <div class="dugmeler-dn">
+        <button class="dugme" type="submit">Raporu oluştur</button>
+        <button class="dugme ikincil" type="button" id="yazdir" hidden>Yazdır / PDF</button>
+      </div>
+      <p id="hata" class="hata" hidden></p>
+    </form>
+  </section>
+  <section id="rapor"></section>
+  <details class="panel kodlar">
+    <summary>Formlar, kodları ve ön test / son test amaçları</summary>
+    <div id="form-tablosu"></div>
+  </details>
+</main>
+<script src="/formlar.js"></script>
+<script src="/kod.js"></script>
+<script src="/danisman.js"></script>
+</body>
+</html>
