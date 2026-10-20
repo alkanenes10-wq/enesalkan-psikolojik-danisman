@@ -8,7 +8,7 @@ window.SITE = {
   ad: "Enes Alkan",
   unvan: "Psk. Danışman",
   slogan: "İrade değil, yöntem.",
-  instagram: "enesalkan.pskdan",   // başında @ olmadan
+  instagram: "enesalkn.pskdan",   // başında @ olmadan
   dmKelimesi: "GÖRÜŞME",
   // Google Takvim "Rezervasyon sayfası" bağlantısı (Takvim → randevu programı → Rezervasyon sayfasını paylaş)
   randevu: "",
