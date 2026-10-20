@@ -17,6 +17,7 @@
 
   var liste = document.getElementById("form-listesi");
   if (!liste) return;
+  liste.className = "sss form-akordeon";
   formlar.forEach(function (f, n) {
     var d = document.createElement("details");
     d.name = "form";
