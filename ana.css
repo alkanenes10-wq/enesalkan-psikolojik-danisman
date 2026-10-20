@@ -333,3 +333,17 @@ html.akici { scroll-behavior: auto; }
 @keyframes s-sol { from { opacity: 0; } }
 @keyframes s-gel { from { opacity: 0; transform: translateY(14px) scale(.98); } }
 @media (prefers-reduced-motion: reduce) { .s-kutu, .s-perde { animation: none; } }
+
+/* ---- Formlar: tek tıkla açılan liste ---- */
+.form-akordeon { margin: 26px 0 0; max-width: none; gap: 10px; }
+.form-akordeon summary { gap: 12px; }
+.form-akordeon .f-ad { flex: 1; }
+.form-akordeon summary small { font-size: 12.5px; font-weight: 600; color: var(--soluk); white-space: nowrap; }
+.form-akordeon details[open] summary small { color: rgba(255,255,255,.75); }
+.form-akordeon .f-ic { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 10px; }
+.form-akordeon .f-ic p { margin: 0; }
+.form-akordeon .f-ic .dugme { flex: 0 0 auto; }
+@media (max-width: 560px) {
+  .form-akordeon summary small { display: none; }
+  .form-akordeon .f-ic { flex-direction: column; align-items: stretch; }
+}

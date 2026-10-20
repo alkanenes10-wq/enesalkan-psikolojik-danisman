@@ -17,18 +17,28 @@
 
   var liste = document.getElementById("form-listesi");
   if (!liste) return;
-  formlar.forEach(function (f) {
-    var a = document.createElement("a");
-    a.className = "kart";
-    a.href = (window.ONIZLEME ? "form.html?f=" : "/") + f.slug;
-    var e = document.createElement("span"); e.className = "etiket";
-    e.textContent = f.maddeler.length + " soru · " + f.sure;
-    var h = document.createElement("h3"); h.textContent = f.baslik;
+  formlar.forEach(function (f, n) {
+    var d = document.createElement("details");
+    d.name = "form";
+    if (n === 0) d.open = true;
+    var su = document.createElement("summary");
+    var ad = document.createElement("span"); ad.className = "f-ad"; ad.textContent = f.baslik;
+    var bilgi = document.createElement("small"); bilgi.textContent = f.maddeler.length + " soru · " + f.sure;
+    su.appendChild(ad); su.appendChild(bilgi);
+    var ic = document.createElement("div"); ic.className = "f-ic";
     var p = document.createElement("p"); p.textContent = f.kisaAciklama;
-    var g = document.createElement("span"); g.className = "git"; g.textContent = "Forma başla →";
-    a.appendChild(e); a.appendChild(h); a.appendChild(p); a.appendChild(g);
-    liste.appendChild(a);
+    var a = document.createElement("a"); a.className = "dugme acik kucuk";
+    a.href = (window.ONIZLEME ? "form.html?f=" : "/") + f.slug;
+    a.textContent = "Forma başla →";
+    ic.appendChild(p); ic.appendChild(a);
+    d.appendChild(su); d.appendChild(ic);
+    liste.appendChild(d);
   });
+  // Aynı anda tek form açık kalsın (eski tarayıcılar için)
+  liste.addEventListener("toggle", function (e) {
+    if (!e.target.open) return;
+    liste.querySelectorAll("details[open]").forEach(function (o) { if (o !== e.target) o.open = false; });
+  }, true);
 })();
 
 /* Hikaye şeridi, eğitim/sertifika ve yorumlar: içerik formlar.js içindeki SITE ayarlarından gelir */
