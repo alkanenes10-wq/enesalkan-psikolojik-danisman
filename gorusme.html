@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Randevu al | Enes Alkan</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/logo-180.png">
+<link rel="stylesheet" href="/stil.css">
+</head>
+<body>
+<header class="ust">
+  <div class="kap dar">
+    <a class="marka" href="/"><img src="/logo.svg" alt="" width="40" height="40"><span>Enes Alkan<small>Psk. Danışman</small></span></a>
+  </div>
+</header>
+<main class="form-alan">
+  <div class="kap dar">
+    <div class="panel metin-sayfa">
+      <span class="etiket">15 dakika · ücretsiz · Google Meet</span>
+      <h1>Ön görüşme için saat seç</h1>
+      <p>Açılan takvimden sana uyan saati seç, adını ve e-posta adresini yaz. Onay e-postasında Google Meet bağlantısı yer alır; görüşme saatinde bu bağlantıya tıklaman yeterli. Uygulama yüklemen gerekmez.</p>
+      <ul>
+        <li>Doldurduğun formun <strong>sonuç kodunu</strong> randevu notuna ekleyebilirsin.</li>
+        <li>18 yaşından küçüksen görüşmeye velinle birlikte katılırsın.</li>
+        <li>Gelemeyeceksen onay e-postasındaki bağlantıdan randevunu iptal edebilir ya da başka bir saate alabilirsin.</li>
+      </ul>
+      <a id="randevu" class="dugme tam" href="#" target="_blank" rel="noopener">Takvimi aç</a>
+      <p id="yok" class="not" hidden>Randevu takvimi şu anda kapalı. Instagram'dan <a data-ig href="#"></a> hesabına <span data-kelime></span> yazarak saat belirleyebiliriz.</p>
+      <div class="not">Bu görüşme acil destek hizmeti değildir. Acil bir durumdaysan 112'yi ara.</div>
+    </div>
+  </div>
+</main>
+<footer class="alt">
+  <div class="kap dar"><a href="/bilgilendirme">Bilgilendirme ve gizlilik</a></div>
+</footer>
+<script src="/formlar.js"></script>
+<script src="/ana.js"></script>
+<script>
+(function () {
+  var link = (window.SITE || {}).randevu;
+  var a = document.getElementById("randevu");
+  if (link) a.href = link;
+  else { a.style.display = "none"; document.getElementById("yok").hidden = false; }
+})();
+</script>
+</body>
+</html>

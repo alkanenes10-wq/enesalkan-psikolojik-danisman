@@ -9,7 +9,14 @@ window.SITE = {
   unvan: "Psk. Danışman",
   slogan: "İrade değil, yöntem.",
   instagram: "enesalkan.pskdan",   // başında @ olmadan
-  dmKelimesi: "GÖRÜŞME"
+  dmKelimesi: "GÖRÜŞME",
+  // Google Takvim "Rezervasyon sayfası" bağlantısı (Takvim → randevu programı → Rezervasyon sayfasını paylaş)
+  randevu: "",
+  // Hakkımda bölümündeki eğitim ve sertifika listesi. Yalnızca belgesi olanları yazın.
+  egitim: ["Psikolojik Danışmanlık ve Rehberlik, lisans"],
+  sertifikalar: [],          // örnek: "Bilişsel Davranışçı Terapi Eğitimi (Kurum, Yıl)"
+  // Öğrenci/veli yorumları. Yalnızca yazılı izin aldığınız gerçek yorumları ekleyin; boşsa bölüm görünmez.
+  yorumlar: []               // örnek: { metin: "...", kim: "A. K., mezun öğrenci" }
 };
 
 /* Tüm formlarda ortak kullanılan 1-5 yanıt seçenekleri */

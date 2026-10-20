@@ -19,10 +19,11 @@
       <a href="#konular">Konular</a>
       <a href="#formlar">Formlar</a>
       <a href="#surec">Süreç</a>
+      <a href="#veli">Veliler</a>
       <a href="#hakkimda">Hakkımda</a>
       <a href="#sss">Sorular</a>
     </nav>
-    <a class="dugme kucuk d3" data-dm href="#">Ön görüşme</a>
+    <a class="dugme kucuk d3" data-planla href="#">Ön görüşme</a>
   </div>
 </header>
 
@@ -35,7 +36,7 @@
         <p class="kh-alt">Erteleme, sınav kaygısı ve çalışma düzeni için BDT temelli online danışmanlık ve akademik koçluk.</p>
         <div class="dugmeler">
           <a class="dugme d3" href="#formlar">Kendini değerlendir</a>
-          <a class="dugme ikincil" data-dm href="#">Instagram'dan yaz</a>
+          <a class="dugme ikincil" data-planla href="#">Ön görüşme planla</a>
         </div>
         <div class="sayilar">
           <div><b data-say="15" data-ek=" dk">15 dk</b><span>Ücretsiz ön görüşme</span></div>
@@ -74,6 +75,10 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="hikayeler" aria-label="Formlar">
+    <div class="kap genis"><div class="serit" id="hikaye-seridi"></div></div>
   </section>
 
   <div class="kayanlar" aria-hidden="true">
@@ -150,6 +155,20 @@
     </div>
   </section>
 
+  <section class="blok" id="veli">
+    <div class="kap genis">
+      <span class="ust-etiket orta-blok">Veliler</span>
+      <h2 class="orta">Veliler için</h2>
+      <p class="giris orta">Sınav yılı yalnızca öğrenciyi değil bütün evi etkiler. 18 yaş altındaki öğrencilerle süreç velinin bilgisi ve onayıyla başlar.</p>
+      <div class="veli-izgara">
+        <div class="veli-kart"><b>01</b><h3>Tanışma ve onay</h3><p>Ön görüşmeye velinizle birlikte başlarız. Çalışmanın nasıl yürüyeceğini, gizliliğin nerede başlayıp nerede bittiğini baştan konuşuruz.</p></div>
+        <div class="veli-kart"><b>02</b><h3>Düzenli bilgilendirme</h3><p>Öğrencinin güvenini koruyarak, genel gidişat ve evde nasıl destek olabileceğiniz hakkında belirli aralıklarla bilgi veririm.</p></div>
+        <div class="veli-kart"><b>03</b><h3>Evde destek</h3><p>Baskı oluşturmadan nasıl konuşulacağı, deneme sonuçlarına nasıl yaklaşılacağı gibi konularda size de yol gösteririm.</p></div>
+      </div>
+      <div class="orta-dugme"><a class="dugme ikincil" data-planla data-kim="veli" href="#">Veli olarak ön görüşme planla</a></div>
+    </div>
+  </section>
+
   <section class="blok zeminli" id="hakkimda">
     <div class="kap genis iki">
       <div class="portre" aria-hidden="true">
@@ -171,7 +190,16 @@
           <li><b>Akademik ve duygusal birlikte</b>Program, kaygı ve erteleme birlikte ele alınır.</li>
           <li><b>Veliyle açık iletişim</b>18 yaş altında süreç velinin bilgisi ve onayıyla yürür.</li>
         </ul>
+        <div class="yeterlik" id="yeterlik"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="blok" id="yorumlar" hidden>
+    <div class="kap genis">
+      <span class="ust-etiket orta-blok">Yorumlar</span>
+      <h2 class="orta">Öğrenciler ve veliler ne diyor?</h2>
+      <div class="yorum-izgara" id="yorum-listesi"></div>
     </div>
   </section>
 
@@ -185,6 +213,9 @@
         <details><summary>Görüşmeler nasıl yapılıyor?</summary><p>Görüşmeler online yapılır. Telefon ya da bilgisayardan, bir linke dokunarak katılabilirsin.</p></details>
         <details><summary>Velimin katılması gerekiyor mu?</summary><p>18 yaşından küçüksen evet. Ön görüşme ve sonraki süreç velinin bilgisi ve onayıyla yürütülür.</p></details>
         <details><summary>Formlar psikolojik test mi?</summary><p>Hayır. Formlar tanı koymaz; kendi durumunu fark etmen için hazırlanmış kendini değerlendirme araçlarıdır.</p></details>
+        <details><summary>Görüşmeler kaydediliyor mu?</summary><p>Hayır. Görüşmeler ses ya da görüntü olarak kaydedilmez. Konuştuklarımız, yasal zorunluluklar ve can güvenliği dışında kimseyle paylaşılmaz.</p></details>
+        <details><summary>Ücret ne kadar?</summary><p>Ön görüşme ücretsizdir. Haftalık çalışmanın ücreti ve sıklığı ön görüşmede, ihtiyacına göre netleşir.</p></details>
+        <details><summary>Randevumu nasıl değiştiririm?</summary><p>Onay e-postasındaki bağlantıdan iptal edebilir ya da başka bir saate alabilirsin. Lütfen en az 24 saat önce haber ver.</p></details>
       </div>
     </div>
   </section>
@@ -194,15 +225,39 @@
       <i class="blob"></i><i class="nokta"></i>
       <h2>İletişime geç</h2>
       <p>15 dakikalık ücretsiz ön görüşme için Instagram'dan <span class="kelime" data-kelime>GÖRÜŞME</span> yazmanız yeterli. 18 yaş altındaki öğrenciler veliyle birlikte katılabilir.</p>
-      <a class="dugme acik" data-dm href="#">Instagram'dan yaz</a>
+      <div class="dugmeler orta-dugme">
+        <a class="dugme acik" data-planla href="#">Ön görüşme planla</a>
+        <a class="dugme cerceve" data-dm href="#">Instagram'dan yaz</a>
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="alt">
-  <div class="kap genis">
-    <span data-yil></span> Enes Alkan · <a data-ig href="#"></a> · <a href="/bilgilendirme">Bilgilendirme ve gizlilik</a>
+<a class="kalici-dugme" data-planla href="#" aria-label="Ön görüşme planla"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><span>Ön görüşme</span></a>
+
+<footer class="alt ayak">
+  <div class="kap genis ayak-izgara">
+    <div>
+      <a class="marka" href="/"><img src="/logo.svg" alt="" width="36" height="36"><span>Enes Alkan<small>Psk. Danışman</small></span></a>
+      <p>YKS'ye hazırlanan 12. sınıf ve mezun öğrenciler için BDT temelli online danışmanlık ve akademik koçluk.</p>
+      <a data-ig href="#"></a>
+    </div>
+    <div>
+      <h4>Sayfalar</h4>
+      <a href="#formlar">Formlar</a><a href="#surec">Süreç</a><a href="#veli">Veliler</a><a href="#sss">Sorular</a><a href="/gorusme">Randevu</a>
+    </div>
+    <div>
+      <h4>Belgeler</h4>
+      <a href="/bilgilendirme">Bilgilendirme ve gizlilik</a><a href="/onam">Onam formu</a>
+    </div>
+    <div class="acil">
+      <h4>Acil durumda</h4>
+      <p>Bu site acil destek hizmeti vermez.</p>
+      <a href="tel:112"><b>112</b> Acil çağrı</a>
+      <a href="tel:183"><b>183</b> Sosyal destek hattı</a>
+    </div>
   </div>
+  <div class="kap genis ayak-alt"><span data-yil></span> Enes Alkan</div>
 </footer>
 
 <script src="/formlar.js"></script>

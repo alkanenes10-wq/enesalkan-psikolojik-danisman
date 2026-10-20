@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onam formu | Enes Alkan</title>
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/logo-180.png">
+<link rel="stylesheet" href="/stil.css">
+<style>
+  .imza { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 26px; }
+  .imza div { border-top: 1.5px solid var(--metin); padding-top: 6px; font-size: 14px; color: var(--soluk); min-height: 56px; }
+  .imza div.tam { grid-column: 1 / -1; }
+  .yazdir { margin: 6px 0 4px; }
+  @media print {
+    .ust, .alt, .yazdir { display: none !important; }
+    body { background: #fff; color: #000; }
+    .panel { box-shadow: none; border: 0; padding: 0; }
+    .metin-sayfa h2 { break-after: avoid; }
+  }
+  @media (max-width: 520px) { .imza { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="ust">
+  <div class="kap dar">
+    <a class="marka" href="/"><img src="/logo.svg" alt="" width="40" height="40"><span>Enes Alkan<small>Psk. Danışman</small></span></a>
+  </div>
+</header>
+<main class="form-alan">
+  <div class="kap dar">
+    <div class="panel metin-sayfa">
+      <h1>Bilgilendirilmiş onam formu</h1>
+      <p>Bu form, haftalık çalışmaya başlamadan önce sürecin nasıl yürüyeceğini açıkça bilmen için hazırlanmıştır. İlk seanstan önce okuyup imzalanmış hâlini bana iletmen gerekir.</p>
+      <button class="dugme ikincil yazdir" type="button" onclick="print()">Yazdır ya da PDF olarak kaydet</button>
+
+      <h2>1. Hizmetin niteliği</h2>
+      <p>Sunulan hizmet, Bilişsel Davranışçı Terapi yaklaşımından yararlanan psikolojik danışma ve akademik koçluktur. Tanı koyma, ilaç önerme ya da psikiyatrik tedavi bu hizmetin kapsamında değildir. Gerekli görüldüğünde seni bir psikiyatriste ya da başka bir uzmana yönlendiririm.</p>
+
+      <h2>2. Görüşmelerin yürütülmesi</h2>
+      <ul>
+        <li>Görüşmeler Google Meet üzerinden, görüntülü olarak yapılır.</li>
+        <li>Görüşmeye sessiz ve başkalarının duyamayacağı bir ortamdan katılman beklenir.</li>
+        <li>Görüşmeler ses ya da görüntü olarak kaydedilmez; iki taraf da kayıt almaz.</li>
+        <li>Seans arasında verilen ödev ve çalışmalar sürecin bir parçasıdır.</li>
+      </ul>
+
+      <h2>3. Gizlilik ve sınırları</h2>
+      <p>Görüşmelerde konuşulanlar gizlidir ve izin olmadan kimseyle paylaşılmaz. Şu durumlar bu kuralın dışındadır:</p>
+      <ul>
+        <li>Senin ya da bir başkasının can güvenliğinin ciddi risk altında olması,</li>
+        <li>Mahkeme kararı gibi yasal bir zorunluluk,</li>
+        <li>18 yaşından küçük öğrencilerde, öğrencinin güvenliğini ilgilendiren konularda velinin bilgilendirilmesi.</li>
+      </ul>
+      <p>Bu durumlarda da paylaşım, gerekli olanla sınırlı tutulur ve mümkünse önce seninle konuşulur.</p>
+
+      <h2>4. Randevu, iptal ve ücret</h2>
+      <ul>
+        <li>Ücret ve görüşme sıklığı ön görüşmede birlikte belirlenir.</li>
+        <li>Randevunu en az 24 saat önce iptal edebilir ya da başka bir saate alabilirsin.</li>
+        <li>Haber verilmeden katılınmayan görüşmeler yapılmış sayılabilir.</li>
+        <li>Bağlantı sorunu yaşanırsa görüşme aynı gün içinde tamamlanır ya da yeniden planlanır.</li>
+      </ul>
+
+      <h2>5. Kişisel veriler</h2>
+      <p>Paylaştığın ad, iletişim bilgisi ve görüşme notları yalnızca danışmanlık sürecini yürütmek için kullanılır, üçüncü kişilerle paylaşılmaz ve süreç bittiğinde makul bir süre sonra silinir. Ayrıntılar için <a href="/bilgilendirme">Bilgilendirme ve gizlilik</a> sayfasına bakabilirsin.</p>
+
+      <h2>6. Sürecin sonlandırılması</h2>
+      <p>Çalışmayı istediğin zaman, gerekçe göstermeden bırakabilirsin. Sürecin sana yararlı olmadığını düşünürsem bunu seninle açıkça konuşur, gerekirse başka bir uzmana yönlendiririm.</p>
+
+      <h2>7. Acil durumlar</h2>
+      <p>Bu hizmet acil destek hizmeti değildir. Acil bir durumda 112'yi ara ya da en yakın sağlık kuruluşuna başvur.</p>
+
+      <h2>Onay</h2>
+      <p>Yukarıdaki bilgileri okudum, anladım ve bu koşullarla danışmanlık sürecine başlamayı kabul ediyorum.</p>
+      <div class="imza">
+        <div>Danışanın adı soyadı</div>
+        <div>Tarih ve imza</div>
+        <div>Velinin adı soyadı (18 yaşından küçükse)</div>
+        <div>Tarih ve imza</div>
+        <div class="tam">Danışman: Enes Alkan, Psk. Danışman · İmza</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="alt">
+  <div class="kap dar"><a href="/bilgilendirme">Bilgilendirme ve gizlilik</a></div>
+</footer>
+</body>
+</html>

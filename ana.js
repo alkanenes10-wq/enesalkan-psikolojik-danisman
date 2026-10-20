@@ -31,6 +31,189 @@
   });
 })();
 
+/* Hikaye şeridi, eğitim/sertifika ve yorumlar: içerik formlar.js içindeki SITE ayarlarından gelir */
+(function () {
+  var site = window.SITE || {};
+  var formlar = window.FORMLAR || [];
+  function el(t, c, m) { var e = document.createElement(t); if (c) e.className = c; if (m != null) e.textContent = m; return e; }
+  var IKON = {
+    "erteleme": '<circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.5 2M9 3h6"/>',
+    "sinav-kaygisi": '<path d="M3 12h4l2-6 4 12 2-6h6"/>',
+    "akademik-oz-yeterlik": '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+    "mukemmeliyetcilik": '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6"/>',
+    "aile-ve-cevre": '<circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M3 20c0-3.3 2.2-5.5 5-5.5s5 2.2 5 5.5M13.5 20c.2-2.6 1.4-4.2 3-4.2s3 1.6 3.3 4.2"/>',
+    "meslek-karari": '<path d="M12 21V11M12 11l-6-4M12 11l6-4M6 7V3M18 7V3"/>',
+    "tukenmislik": '<rect x="3" y="8" width="16" height="9" rx="2"/><path d="M22 11v3M6 11v3"/>',
+    "zaman-algisi": '<path d="M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9s8 4 8 9"/>',
+    "dayaniklilik": '<path d="M12 21s-7-4.4-7-10.2A4.3 4.3 0 0 1 12 8a4.3 4.3 0 0 1 7 2.8C19 16.6 12 21 12 21z"/>',
+    "zaman-yonetimi": '<rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4"/>'
+  };
+  var serit = document.getElementById("hikaye-seridi");
+  if (serit) formlar.forEach(function (f) {
+    var a = el("a", "hikaye");
+    a.href = (window.ONIZLEME ? "form.html?f=" : "/") + f.slug;
+    var halka = el("span", "h-halka");
+    halka.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + (IKON[f.slug] || '<circle cx="12" cy="12" r="7"/>') + '</svg>';
+    a.appendChild(halka);
+    a.appendChild(el("span", "h-ad", f.baslik));
+    serit.appendChild(a);
+  });
+
+  var y = document.getElementById("yeterlik");
+  if (y && ((site.egitim || []).length || (site.sertifikalar || []).length)) {
+    [["Eğitim", site.egitim], ["Sertifikalar", site.sertifikalar]].forEach(function (g) {
+      if (!g[1] || !g[1].length) return;
+      var k = el("div", "y-grup");
+      k.appendChild(el("h4", null, g[0]));
+      var u = el("ul");
+      g[1].forEach(function (m) { u.appendChild(el("li", null, m)); });
+      k.appendChild(u);
+      y.appendChild(k);
+    });
+  }
+
+  var yb = document.getElementById("yorumlar"), yl = document.getElementById("yorum-listesi");
+  if (yb && yl && (site.yorumlar || []).length) {
+    site.yorumlar.forEach(function (r) {
+      var f = el("figure", "yorum");
+      f.appendChild(el("blockquote", null, r.metin));
+      f.appendChild(el("figcaption", null, r.kim || ""));
+      yl.appendChild(f);
+    });
+    yb.hidden = false;
+  }
+})();
+
+/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi takvime ya da Instagram'a yönlendirir. Yanıtlar hiçbir yere gönderilmez. */
+(function () {
+  var site = window.SITE || {};
+  var dugmeler = document.querySelectorAll("[data-planla]");
+  if (!dugmeler.length) return;
+  var dm = "https://ig.me/m/" + site.instagram;
+  var KONULAR = ["Erteleme ve çalışma düzeni", "Sınav kaygısı", "Zaman yönetimi", "Bölüm ve meslek kararı", "Motivasyon ve tükenmişlik", "Başka bir konu"];
+  var KIM = [
+    { k: "buyuk", ad: "Kendim için, 18 yaş ve üstü" },
+    { k: "kucuk", ad: "Kendim için, 18 yaşından küçük" },
+    { k: "veli", ad: "Çocuğum için, veliyim" }
+  ];
+  var durum, kok, kutu, sonOdak;
+
+  function el(t, c, m) { var e = document.createElement(t); if (c) e.className = c; if (m != null) e.textContent = m; return e; }
+
+  function kur() {
+    kok = el("div", "sihirbaz");
+    kok.setAttribute("role", "dialog");
+    kok.setAttribute("aria-modal", "true");
+    kok.setAttribute("aria-label", "Ön görüşme planla");
+    kok.hidden = true;
+    var perde = el("div", "s-perde");
+    perde.onclick = kapat;
+    kutu = el("div", "s-kutu");
+    kok.appendChild(perde); kok.appendChild(kutu);
+    document.body.appendChild(kok);
+    document.addEventListener("keydown", function (e) { if (!kok.hidden && e.key === "Escape") kapat(); });
+  }
+
+  function ac(kim) {
+    if (!kok) kur();
+    sonOdak = document.activeElement;
+    durum = { adim: 0, konu: null, kim: kim || null, kod: "" };
+    if (durum.kim) durum.adim = 0;
+    kok.hidden = false;
+    document.documentElement.classList.add("sihirbaz-acik");
+    ciz();
+  }
+  function kapat() {
+    kok.hidden = true;
+    document.documentElement.classList.remove("sihirbaz-acik");
+    if (sonOdak && sonOdak.focus) sonOdak.focus();
+  }
+
+  function ust(baslik, toplam) {
+    var u = el("div", "s-ust");
+    var ilerleme = el("div", "s-ilerleme");
+    for (var i = 0; i < toplam; i++) ilerleme.appendChild(el("i", i <= durum.adim ? "dolu" : ""));
+    u.appendChild(ilerleme);
+    var x = el("button", "s-kapat", "×"); x.type = "button"; x.setAttribute("aria-label", "Kapat"); x.onclick = kapat;
+    u.appendChild(x);
+    kutu.appendChild(u);
+    kutu.appendChild(el("h3", null, baslik));
+  }
+  function secenekler(liste, secili, sec) {
+    var g = el("div", "s-secenekler");
+    liste.forEach(function (o) {
+      var b = el("button", "s-secenek" + (secili === o ? " secili" : ""), o.ad || o);
+      b.type = "button";
+      b.onclick = function () { sec(o); };
+      g.appendChild(b);
+    });
+    kutu.appendChild(g);
+  }
+  function geri() {
+    var b = el("button", "baglanti", "Geri"); b.type = "button";
+    b.onclick = function () { durum.adim--; ciz(); };
+    kutu.appendChild(b);
+  }
+
+  function mesaj() {
+    var kim = KIM.filter(function (x) { return x.k === durum.kim; })[0];
+    return site.dmKelimesi + "\nKonu: " + durum.konu + "\nKim için: " + (kim ? kim.ad : "") + (durum.kod ? "\nSonuç kodu: " + durum.kod : "");
+  }
+
+  function ciz() {
+    kutu.innerHTML = "";
+    if (durum.adim === 0) {
+      ust("Hangi konuda destek istiyorsun?", 4);
+      secenekler(KONULAR, durum.konu, function (o) { durum.konu = o; durum.adim = 1; ciz(); });
+    } else if (durum.adim === 1) {
+      ust("Görüşme kimin için?", 4);
+      secenekler(KIM, KIM.filter(function (x) { return x.k === durum.kim; })[0], function (o) { durum.kim = o.k; durum.adim = 2; ciz(); });
+      geri();
+    } else if (durum.adim === 2) {
+      ust("Formlardan birini doldurdun mu?", 4);
+      kutu.appendChild(el("p", "s-not", "Doldurduysan sonuç ekranındaki kodu buraya yapıştır; ön görüşmede sonucuna birlikte bakarız. Doldurmadıysan boş bırakabilirsin."));
+      var g = el("input", "s-girdi"); g.type = "text"; g.placeholder = "Örnek: ER2-345434543454-77"; g.value = durum.kod; g.autocomplete = "off";
+      kutu.appendChild(g);
+      var d = el("button", "dugme tam", "Devam"); d.type = "button";
+      d.onclick = function () { durum.kod = g.value.trim().toUpperCase().slice(0, 40); durum.adim = 3; ciz(); };
+      g.addEventListener("keydown", function (e) { if (e.key === "Enter") d.click(); });
+      kutu.appendChild(d);
+      geri();
+      setTimeout(function () { g.focus(); }, 30);
+    } else {
+      var kucuk = durum.kim !== "buyuk";
+      var takvim = !kucuk && site.randevu;
+      ust(takvim ? "Takvimden sana uyan saati seç" : "Bana Instagram'dan yaz", 4);
+      kutu.appendChild(el("p", "s-not", takvim
+        ? "15 dakikalık ön görüşme ücretsizdir ve Google Meet üzerinden yapılır. Randevu notuna aşağıdaki mesajı ekleyebilirsin."
+        : kucuk
+          ? "18 yaş altındaki öğrencilerle ön görüşmeyi velinin bilgisi ve onayıyla planlıyorum. Aşağıdaki mesajı kopyalayıp Instagram'dan gönder; saati birlikte belirleyelim."
+          : "Aşağıdaki mesajı kopyalayıp Instagram'dan gönder; ön görüşme saatini birlikte belirleyelim."));
+      var m = mesaj();
+      var pre = el("pre", "s-mesaj", m);
+      kutu.appendChild(pre);
+      var kop = el("button", "dugme ikincil tam", "Mesajı kopyala"); kop.type = "button";
+      kop.onclick = function () {
+        function tamam() { kop.textContent = "Kopyalandı"; setTimeout(function () { kop.textContent = "Mesajı kopyala"; }, 1800); }
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(m).then(tamam, secip); else secip();
+        function secip() { var r = document.createRange(); r.selectNodeContents(pre); var se = getSelection(); se.removeAllRanges(); se.addRange(r); kop.textContent = "Seçildi, kopyala"; }
+      };
+      var git = el("a", "dugme tam", takvim ? "Takvimi aç" : "Instagram'dan yaz");
+      git.href = takvim ? site.randevu : dm; git.target = "_blank"; git.rel = "noopener";
+      kutu.appendChild(git);
+      kutu.appendChild(kop);
+      if (takvim) { var ig = el("a", "baglanti", "Instagram'dan yazmayı tercih ederim"); ig.href = dm; ig.target = "_blank"; ig.rel = "noopener"; kutu.appendChild(ig); }
+      geri();
+    }
+    var ilk = kutu.querySelector(".s-secenek, .s-girdi, .dugme");
+    if (ilk && durum.adim !== 2) ilk.focus({ preventScroll: true });
+  }
+
+  dugmeler.forEach(function (b) {
+    b.addEventListener("click", function (e) { e.preventDefault(); ac(b.getAttribute("data-kim")); });
+  });
+})();
+
 /* 3B sahne: fare hareketine göre hafif eğim (yalnızca fare olan cihazlarda) */
 (function () {
   if (!window.matchMedia || !matchMedia("(pointer: fine)").matches) return;
@@ -154,7 +337,7 @@
     if (!calisiyor) { calisiyor = true; simdi = window.scrollY; requestAnimationFrame(dongu); }
   }
   window.addEventListener("wheel", function (e) {
-    if (e.ctrlKey || e.defaultPrevented) return;
+    if (e.ctrlKey || e.defaultPrevented || kok.classList.contains("sihirbaz-acik")) return;
     e.preventDefault();
     var d = e.deltaY * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerHeight : 1);
     git((calisiyor ? hedef : window.scrollY) + d);
