@@ -1,5 +1,5 @@
 /* Form sayfasının çalışma mantığı.
-   Hesaplama tamamen tarayıcıda yapılır; hiçbir yanıt kaydedilmez ya da gönderilmez. */
+   Hesaplama tarayıcıda yapılır. Öğrenci sonuç kodunu WhatsApp'tan gönderdiğinde danışman yanıtları danışman ekranında görür. */
 (function () {
   var site = window.SITE || {};
   var formlar = window.FORMLAR || [];
@@ -57,7 +57,7 @@
     p.appendChild(el("p", null, form.giris));
     p.appendChild(el("div", "not",
       "Bu form, şu anki durumunu görmen ve sonucunu paylaşırsan ön görüşmede nereden başlayacağımızı belirlemek için hazırlandı. Tanı koymaz. " +
-      "Yanıtların kaydedilmez; sonuç yalnızca senin ekranında hesaplanır."));
+      "Bitirince sonucunu WhatsApp'tan bana gönderebilirsin; böylece ben de yanıtlarını görebilirim."));
     var b = el("button", "dugme tam", "Başla");
     b.type = "button";
     b.onclick = function () { soru(0); };
@@ -185,7 +185,7 @@
       };
       satir2.appendChild(kb);
       kk.appendChild(satir2);
-      kk.appendChild(el("p", null, "Ön görüşmede bu kodu bana gönderirsen yanıtlarını ayrıntılı değerlendirebilirim. Kod adını ya da kişisel bilgini içermez; yalnızca sen paylaşırsan bana ulaşır."));
+      kk.appendChild(el("p", null, "Bu kod yanıtlarını içerir. Aşağıdaki düğmeyle WhatsApp'tan bana gönderdiğinde yanıtlarını ve zorlandığın alanları ayrıntılı olarak görürüm."));
       p.appendChild(kk);
     }
 

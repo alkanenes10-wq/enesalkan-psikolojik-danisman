@@ -100,7 +100,7 @@
   }
 })();
 
-/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi WhatsApp'a yönlendirir. Yanıtlar hiçbir yere gönderilmez. */
+/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi WhatsApp'a yönlendirir. */
 (function () {
   var site = window.SITE || {};
   var dugmeler = document.querySelectorAll("[data-planla]");
