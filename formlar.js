@@ -13,7 +13,7 @@ window.SITE = {
   telefon: "0535 681 49 73",       // sitede görünen hâli
   dmKelimesi: "GÖRÜŞME",          // yalnızca form sonucundan gönderilen WhatsApp mesajının ilk satırı
   // Hakkımda bölümündeki eğitim ve sertifika listesi. Yalnızca belgesi olanları yazın.
-  egitim: ["Psikolojik Danışmanlık ve Rehberlik, lisans"],
+  egitim: [],                // eğitim bilgisi index.html içindeki "Deneyim ve eğitim" bölümünde
   sertifikalar: [],          // örnek: "Bilişsel Davranışçı Terapi Eğitimi (Kurum, Yıl)"
   // Öğrenci/veli yorumları. Yalnızca yazılı izin aldığınız gerçek yorumları ekleyin; boşsa bölüm görünmez.
   yorumlar: []               // örnek: { metin: "...", kim: "A. K., mezun öğrenci" }

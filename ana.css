@@ -347,3 +347,23 @@ html.akici { scroll-behavior: auto; }
   .form-akordeon summary small { display: none; }
   .form-akordeon .f-ic { flex-direction: column; align-items: stretch; }
 }
+
+/* ---- Deneyim ve eğitim ---- */
+.deneyim { margin-top: 46px; }
+.deneyim > h3 { font-size: 22px; letter-spacing: -.02em; margin: 0 0 20px; }
+.zaman { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; position: relative; }
+.zaman::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background: var(--cizgi); }
+.zaman li { position: relative; display: grid; grid-template-columns: 190px 1fr; gap: 18px; padding-left: 34px; }
+.zaman li::before { content: ""; position: absolute; left: 0; top: 24px; width: 16px; height: 16px; border-radius: 50%; background: var(--vurgu); box-shadow: 0 0 0 4px var(--zemin), 0 3px 0 var(--koyu); }
+.z-tarih { font-size: 14px; font-weight: 700; color: var(--ana); padding-top: 20px; }
+.z-ic { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 16px; padding: 18px 22px; box-shadow: 0 5px 0 var(--cizgi), 0 14px 26px rgba(11, 23, 54, .05); }
+.z-ic h4 { margin: 0; font-size: 17px; color: var(--baslik); }
+.z-ic small { display: block; margin-top: 2px; font-size: 14px; font-weight: 600; color: var(--vurgu); }
+.z-ic p { margin: 8px 0 0; font-size: 15px; color: var(--soluk); }
+.cipler { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.cipler span { font-size: 13.5px; font-weight: 600; color: var(--ana); background: var(--ana-acik); padding: 7px 13px; border-radius: 999px; }
+@media (max-width: 640px) {
+  .zaman li { grid-template-columns: 1fr; gap: 6px; }
+  .z-tarih { padding-top: 0; }
+  .zaman li::before { top: 2px; }
+}
