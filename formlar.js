@@ -9,6 +9,8 @@ window.SITE = {
   unvan: "Psk. Danışman",
   slogan: "Kendine yeten öğrenci ol.",
   instagram: "enesalkn.pskdan",   // başında @ olmadan
+  whatsapp: "905356814973",        // ülke koduyla, boşluksuz (0535 681 49 73)
+  telefon: "0535 681 49 73",       // sitede görünen hâli
   dmKelimesi: "GÖRÜŞME",
   // Google Takvim "Rezervasyon sayfası" bağlantısı (Takvim → randevu programı → Rezervasyon sayfasını paylaş)
   randevu: "",

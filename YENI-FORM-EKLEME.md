@@ -55,9 +55,10 @@ Danışman notuna o alan yüksek çıktığında hangi çalışmaya odaklanacağ
 ## Sonuç kodu ve danışman ekranı
 
 - Öğrenci formu bitirince ekranda `SK2-421354213542-37` gibi bir sonuç kodu görür ve kopyalayabilir.
-- Öğrenci bu kodu size Instagram'dan gönderir.
+- Öğrenci bu kodu size WhatsApp'tan gönderir (sonuç ekranındaki düğme kodu mesaja kendiliğinden ekler).
 - `siteniz/danisman` adresini açıp kodu yapıştırın. Son test kodunu da girerseniz iki uygulama karşılaştırılır.
 - Kodlar yalnızca sizin tarayıcınızda çözülür; hiçbir yere kaydedilmez. Bu sayfa arama motorlarına kapalıdır.
+- Danışman ekranı parola korumalıdır (`middleware.js`). Parola Vercel'de **Settings → Environment Variables** altındaki `DANISMAN_SIFRE` değişkenindedir; kullanıcı adı `enes`. Parolayı değiştirdikten sonra Vercel'de yeniden yayın (Redeploy) yapın.
 - Puanların tamamı “zorlanma” yönündedir: yüksek puan daha çok zorlanma, son testteki düşüş iyileşme demektir.
 
 ## Ters puanlanan madde
@@ -76,6 +77,6 @@ sonuna `ters: true` ekleyin; puanı kendiliğinden tersine çevrilir:
 - Maddeleri mevcut ölçeklerin metinlerinden kopyalamayın; kendi cümlelerinizle yazın.
 - Sonuç metinlerinde tanı koyan ifadeler ("kaygı bozukluğun var" gibi) kullanmayın.
 
-## Instagram hesabını ya da anahtar kelimeyi değiştirme
+## WhatsApp numarasını, Instagram hesabını ya da anahtar kelimeyi değiştirme
 
-Aynı dosyanın en üstündeki `window.SITE` bölümünde `instagram` ve `dmKelimesi` alanlarını değiştirin.
+Aynı dosyanın en üstündeki `window.SITE` bölümünde `whatsapp`, `telefon`, `instagram` ve `dmKelimesi` alanlarını değiştirin.

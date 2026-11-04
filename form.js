@@ -18,7 +18,10 @@
     var parca = location.pathname.split("/").filter(Boolean).pop() || "";
     return decodeURIComponent(parca).replace(/\.html$/, "").toLowerCase();
   }
-  function dmAdresi() { return "https://ig.me/m/" + site.instagram; }
+  function dmAdresi(kod) {
+    var m = site.dmKelimesi + "\nForm: " + (form ? form.baslik : "") + (kod ? "\nSonuç kodu: " + kod : "");
+    return "https://wa.me/" + site.whatsapp + "?text=" + encodeURIComponent(m);
+  }
   function temizle() { kok.innerHTML = ""; window.scrollTo(0, 0); }
 
   var form = formlar.filter(function (f) { return f.slug === slugBul(); })[0];
@@ -189,12 +192,12 @@
     var d = el("div", "davet");
     d.appendChild(el("h2", null, "Sonucunu birlikte konuşalım mı?"));
     var dp = el("p");
-    dp.appendChild(document.createTextNode("İstersen 15 dakikalık ücretsiz bir ön görüşmede bu sonucun senin için ne anlama geldiğine bakalım. Instagram'dan bana "));
+    dp.appendChild(document.createTextNode("İstersen 15 dakikalık ücretsiz bir ön görüşmede bu sonucun senin için ne anlama geldiğine bakalım. WhatsApp'tan bana "));
     dp.appendChild(el("span", "kelime", site.dmKelimesi));
     dp.appendChild(document.createTextNode(" yazman yeterli. 18 yaşından küçüksen görüşmeye velinle birlikte katılırsın."));
     d.appendChild(dp);
-    var a = el("a", "dugme tam", "Instagram'dan yaz");
-    a.href = dmAdresi();
+    var a = el("a", "dugme tam", "WhatsApp'tan yaz");
+    a.href = dmAdresi(window.SonucKodu && form.kod ? SonucKodu.uret(form, yanitlar) : "");
     a.target = "_blank";
     a.rel = "noopener";
     d.appendChild(a);

@@ -1,11 +1,15 @@
-/* Ana sayfa ve bilgilendirme sayfası: form listesini ve Instagram bağlantılarını doldurur. */
+/* Ana sayfa ve bilgilendirme sayfası: form listesini, WhatsApp ve Instagram bağlantılarını doldurur. */
 (function () {
   var site = window.SITE || {};
   var formlar = window.FORMLAR || [];
-  var dm = "https://ig.me/m/" + site.instagram;
+  var dm = "https://wa.me/" + site.whatsapp + "?text=" + encodeURIComponent(site.dmKelimesi);
 
   document.querySelectorAll("[data-dm]").forEach(function (a) {
     a.href = dm; a.target = "_blank"; a.rel = "noopener";
+  });
+  document.querySelectorAll("[data-tel]").forEach(function (a) {
+    a.href = "https://wa.me/" + site.whatsapp; a.textContent = site.telefon;
+    a.target = "_blank"; a.rel = "noopener";
   });
   document.querySelectorAll("[data-ig]").forEach(function (a) {
     a.href = "https://instagram.com/" + site.instagram;
@@ -95,12 +99,12 @@
   }
 })();
 
-/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi takvime ya da Instagram'a yönlendirir. Yanıtlar hiçbir yere gönderilmez. */
+/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi takvime ya da WhatsApp'a yönlendirir. Yanıtlar hiçbir yere gönderilmez. */
 (function () {
   var site = window.SITE || {};
   var dugmeler = document.querySelectorAll("[data-planla]");
   if (!dugmeler.length) return;
-  var dm = "https://ig.me/m/" + site.instagram;
+  function wa(metin) { return "https://wa.me/" + site.whatsapp + "?text=" + encodeURIComponent(metin); }
   var KONULAR = ["Erteleme ve çalışma düzeni", "Sınav kaygısı", "Zaman yönetimi", "Bölüm ve meslek kararı", "Motivasyon ve tükenmişlik", "Başka bir konu"];
   var KIM = [
     { k: "buyuk", ad: "Kendim için, 18 yaş ve üstü" },
@@ -194,12 +198,12 @@
     } else {
       var kucuk = durum.kim !== "buyuk";
       var takvim = !kucuk && site.randevu;
-      ust(takvim ? "Takvimden sana uyan saati seç" : "Bana Instagram'dan yaz", 4);
+      ust(takvim ? "Takvimden sana uyan saati seç" : "Bana WhatsApp'tan yaz", 4);
       kutu.appendChild(el("p", "s-not", takvim
         ? "15 dakikalık ön görüşme ücretsizdir ve Google Meet üzerinden yapılır. Randevu notuna aşağıdaki mesajı ekleyebilirsin."
         : kucuk
-          ? "18 yaş altındaki öğrencilerle ön görüşmeyi velinin bilgisi ve onayıyla planlıyorum. Aşağıdaki mesajı kopyalayıp Instagram'dan gönder; saati birlikte belirleyelim."
-          : "Aşağıdaki mesajı kopyalayıp Instagram'dan gönder; ön görüşme saatini birlikte belirleyelim."));
+          ? "18 yaş altındaki öğrencilerle ön görüşmeyi velinin bilgisi ve onayıyla planlıyorum. Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, saati birlikte belirleyelim."
+          : "Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, ön görüşme saatini birlikte belirleyelim."));
       var m = mesaj();
       var pre = el("pre", "s-mesaj", m);
       kutu.appendChild(pre);
@@ -209,11 +213,11 @@
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(m).then(tamam, secip); else secip();
         function secip() { var r = document.createRange(); r.selectNodeContents(pre); var se = getSelection(); se.removeAllRanges(); se.addRange(r); kop.textContent = "Seçildi, kopyala"; }
       };
-      var git = el("a", "dugme tam", takvim ? "Takvimi aç" : "Instagram'dan yaz");
-      git.href = takvim ? site.randevu : dm; git.target = "_blank"; git.rel = "noopener";
+      var git = el("a", "dugme tam", takvim ? "Takvimi aç" : "WhatsApp'tan yaz");
+      git.href = takvim ? site.randevu : wa(m); git.target = "_blank"; git.rel = "noopener";
       kutu.appendChild(git);
       kutu.appendChild(kop);
-      if (takvim) { var ig = el("a", "baglanti", "Instagram'dan yazmayı tercih ederim"); ig.href = dm; ig.target = "_blank"; ig.rel = "noopener"; kutu.appendChild(ig); }
+      if (takvim) { var ig = el("a", "baglanti", "WhatsApp'tan yazmayı tercih ederim"); ig.href = wa(m); ig.target = "_blank"; ig.rel = "noopener"; kutu.appendChild(ig); }
       geri();
     }
     var ilk = kutu.querySelector(".s-secenek, .s-girdi, .dugme");
