@@ -347,3 +347,10 @@ html.akici { scroll-behavior: auto; }
   .form-akordeon summary small { display: none; }
   .form-akordeon .f-ic { flex-direction: column; align-items: stretch; }
 }
+
+/* ---- Müsaitlik takvimi (Google Takvim) ---- */
+.takvim-kutu { display: grid; gap: 12px; justify-items: center; margin-top: 26px; }
+.takvim-kutu:empty { display: none; }
+.takvim-kutu iframe { width: 100%; max-width: 980px; height: 680px; border: 1px solid var(--cizgi); border-radius: 18px; background: #fff; box-shadow: 0 6px 0 var(--cizgi), 0 18px 30px rgba(11, 23, 54, .08); }
+.panel .takvim-kutu iframe { height: 620px; box-shadow: none; }
+@media (max-width: 560px) { .takvim-kutu iframe { height: 760px; } }

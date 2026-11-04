@@ -11,8 +11,10 @@ window.SITE = {
   instagram: "enesalkn.pskdan",   // başında @ olmadan
   whatsapp: "905356814973",        // ülke koduyla, boşluksuz (0535 681 49 73)
   telefon: "0535 681 49 73",       // sitede görünen hâli
-  dmKelimesi: "GÖRÜŞME",
-  // Google Takvim "Rezervasyon sayfası" bağlantısı (Takvim → randevu programı → Rezervasyon sayfasını paylaş)
+  dmKelimesi: "GÖRÜŞME",          // yalnızca form sonucundan gönderilen WhatsApp mesajının ilk satırı
+  // Google Takvim randevu programı bağlantısı. Sitede takvimin görünmesi için:
+  // Takvim → randevu programı → Paylaş → "Web sitesi yerleştirme" → "Satır içi takvim" kodundaki
+  // src="..." içindeki https://calendar.google.com/calendar/appointments/... adresini buraya yapıştırın.
   randevu: "",
   // Hakkımda bölümündeki eğitim ve sertifika listesi. Yalnızca belgesi olanları yazın.
   egitim: ["Psikolojik Danışmanlık ve Rehberlik, lisans"],

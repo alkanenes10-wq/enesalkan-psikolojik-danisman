@@ -2,7 +2,7 @@
 (function () {
   var site = window.SITE || {};
   var formlar = window.FORMLAR || [];
-  var dm = "https://wa.me/" + site.whatsapp + "?text=" + encodeURIComponent(site.dmKelimesi);
+  var dm = "https://wa.me/" + site.whatsapp;
 
   document.querySelectorAll("[data-dm]").forEach(function (a) {
     a.href = dm; a.target = "_blank"; a.rel = "noopener";
@@ -17,6 +17,28 @@
     a.target = "_blank"; a.rel = "noopener";
   });
   document.querySelectorAll("[data-kelime]").forEach(function (s) { s.textContent = site.dmKelimesi; });
+
+  // Google Takvim müsaitlik takvimi: SITE.randevu doluysa [data-takvim] alanlarına yerleştirilir
+  var gomulu = window.takvimGomme = function (link) {
+    if (!link || link.indexOf("calendar.google.com/calendar/appointments") < 0) return null;
+    return link + (link.indexOf("gv=true") < 0 ? (link.indexOf("?") < 0 ? "?" : "&") + "gv=true" : "");
+  };
+  document.querySelectorAll("[data-takvim]").forEach(function (kutu) {
+    if (!site.randevu) return;
+    var bolum = kutu.closest("[data-takvim-bolum]");
+    if (bolum) bolum.hidden = false;
+    var src = gomulu(site.randevu);
+    if (src) {
+      var f = document.createElement("iframe");
+      f.src = src; f.title = "Müsait saatler"; f.loading = "lazy";
+      kutu.appendChild(f);
+    }
+    var a = document.createElement("a");
+    a.className = src ? "baglanti" : "dugme tam";
+    a.href = site.randevu; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = src ? "Takvimi yeni sekmede aç" : "Müsait saatleri gör ve randevu al";
+    kutu.appendChild(a);
+  });
   document.querySelectorAll("[data-yil]").forEach(function (s) { s.textContent = "© " + new Date().getFullYear(); });
 
   var liste = document.getElementById("form-listesi");
@@ -172,7 +194,7 @@
 
   function mesaj() {
     var kim = KIM.filter(function (x) { return x.k === durum.kim; })[0];
-    return site.dmKelimesi + "\nKonu: " + durum.konu + "\nKim için: " + (kim ? kim.ad : "") + (durum.kod ? "\nSonuç kodu: " + durum.kod : "");
+    return "Merhaba, ön görüşme için yazıyorum.\nKonu: " + durum.konu + "\nKim için: " + (kim ? kim.ad : "") + (durum.kod ? "\nSonuç kodu: " + durum.kod : "");
   }
 
   function ciz() {

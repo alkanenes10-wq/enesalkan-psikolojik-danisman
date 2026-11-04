@@ -192,9 +192,7 @@
     var d = el("div", "davet");
     d.appendChild(el("h2", null, "Sonucunu birlikte konuşalım mı?"));
     var dp = el("p");
-    dp.appendChild(document.createTextNode("İstersen 15 dakikalık ücretsiz bir ön görüşmede bu sonucun senin için ne anlama geldiğine bakalım. WhatsApp'tan bana "));
-    dp.appendChild(el("span", "kelime", site.dmKelimesi));
-    dp.appendChild(document.createTextNode(" yazman yeterli. 18 yaşından küçüksen görüşmeye velinle birlikte katılırsın."));
+    dp.appendChild(document.createTextNode("İstersen 15 dakikalık ücretsiz bir ön görüşmede bu sonucun senin için ne anlama geldiğine bakalım. WhatsApp'tan bana yazman yeterli; form sonucun mesaja kendiliğinden eklenir. 18 yaşından küçüksen görüşmeye velinle birlikte katılırsın."));
     d.appendChild(dp);
     var a = el("a", "dugme tam", "WhatsApp'tan yaz");
     a.href = dmAdresi(window.SonucKodu && form.kod ? SonucKodu.uret(form, yanitlar) : "");
