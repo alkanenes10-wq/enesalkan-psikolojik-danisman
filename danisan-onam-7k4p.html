@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilgilendirilmiş onam formu | Enes Alkan</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/logo-180.png">
+<link rel="stylesheet" href="/stil.css?v=28">
+<style>
+  .onay-alan { display: grid; gap: 14px; margin-top: 18px; }
+  .ikili { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .alan-k label { display: block; font-size: 14px; font-weight: 700; color: var(--metin); margin-bottom: 6px; }
+  .alan-k label small { font-weight: 500; color: var(--soluk); }
+  .alan-k input { width: 100%; font: inherit; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--cizgi); background: var(--kart); color: var(--metin); }
+  .alan-k input:focus { outline: none; border-color: var(--ana); }
+  .alan-k input.hata, .imza-cerceve.hata, .kutucuk.hata { border-color: #c0392b; }
+  .kutucuk { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1.5px solid var(--cizgi); border-radius: 12px; cursor: pointer; font-size: 15px; }
+  .kutucuk input { width: 20px; height: 20px; margin: 1px 0 0; flex: 0 0 auto; accent-color: var(--ana); }
+  .imza-cerceve { border: 1.5px dashed var(--cizgi); border-radius: 12px; background: var(--kart); position: relative; }
+  .imza-cerceve canvas { display: block; width: 100%; height: 150px; touch-action: none; cursor: crosshair; }
+  .imza-cerceve .ipucu { position: absolute; left: 14px; bottom: 10px; font-size: 13px; color: var(--soluk); pointer-events: none; }
+  .imza-cerceve img { display: none; width: 100%; height: 150px; object-fit: contain; }
+  .imza-ust { display: flex; justify-content: space-between; align-items: baseline; }
+  .imza-ust .baglanti { padding: 0; font-size: 13.5px; }
+  .veli-alan[hidden] { display: none !important; }
+  .islem { display: grid; gap: 10px; margin-top: 22px; }
+  .uyari-k { color: #c0392b; font-weight: 600; font-size: 14.5px; margin: 0; }
+  .danisman-imza { margin-top: 18px; border-top: 1.5px solid var(--metin); padding-top: 6px; font-size: 14px; color: var(--soluk); min-height: 52px; }
+  @media (max-width: 560px) { .ikili { grid-template-columns: 1fr; } }
+  @media print {
+    @page { margin: 16mm; }
+    .ust, .alt, .islem, .imza-ust .baglanti, .ipucu, .yazdirma { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11.5pt; }
+    .form-alan { padding: 0; }
+    .panel { box-shadow: none; border: 0; padding: 0; }
+    .metin-sayfa h2 { font-size: 13pt; margin-top: 1.1em; break-after: avoid; }
+    .alan-k input { border: 0; border-bottom: 1px solid #000; border-radius: 0; padding: 4px 0; }
+    .kutucuk { border: 0; padding: 2px 0; }
+    .imza-cerceve { border: 0; border-bottom: 1px solid #000; border-radius: 0; }
+    .imza-cerceve canvas { display: none; }
+    .imza-cerceve img { display: block; height: 90px; object-position: left; }
+    .kutucuk, .alan-k, .ikili { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="ust">
+  <div class="kap dar">
+    <a class="marka" href="/"><img src="/logo.svg" alt="" width="40" height="40"><span>Enes Alkan<small>Psk. Danışman</small></span></a>
+  </div>
+</header>
+<main class="form-alan">
+  <div class="kap dar">
+    <form class="panel metin-sayfa" id="onam" novalidate>
+      <h1>Bilgilendirilmiş onam formu</h1>
+      <p class="yazdirma">Haftalık çalışmaya başlamadan önce formu oku, alttaki bilgileri doldur ve imzala. Sonra “PDF olarak kaydet” düğmesiyle kaydedip bana WhatsApp'tan gönder. Yazdıkların hiçbir yere gönderilmez ve kaydedilmez; yalnızca senin cihazında kalır.</p>
+
+      <h2>1. Hizmetin niteliği</h2>
+      <p>Sunulan hizmet, Bilişsel Davranışçı Terapi yaklaşımından yararlanan psikolojik danışma ve akademik koçluktur. Tanı koyma, ilaç önerme ya da psikiyatrik tedavi bu hizmetin kapsamında değildir. Gerekli görüldüğünde seni bir psikiyatriste ya da başka bir uzmana yönlendiririm.</p>
+
+      <h2>2. Görüşmelerin yürütülmesi</h2>
+      <ul>
+        <li>Görüşmeler Google Meet üzerinden, görüntülü olarak yapılır.</li>
+        <li>Görüşmeye sessiz ve başkalarının duyamayacağı bir ortamdan katılman beklenir.</li>
+        <li>Görüşmeler ses ya da görüntü olarak kaydedilmez; iki taraf da kayıt almaz.</li>
+        <li>Seans arasında verilen ödev ve çalışmalar sürecin bir parçasıdır.</li>
+      </ul>
+
+      <h2>3. Gizlilik ve sınırları</h2>
+      <p>Görüşmelerde konuşulanlar gizlidir ve izin olmadan kimseyle paylaşılmaz. Şu durumlar bu kuralın dışındadır:</p>
+      <ul>
+        <li>Senin ya da bir başkasının can güvenliğinin ciddi risk altında olması,</li>
+        <li>Mahkeme kararı gibi yasal bir zorunluluk,</li>
+        <li>18 yaşından küçük öğrencilerde, öğrencinin güvenliğini ilgilendiren konularda velinin bilgilendirilmesi.</li>
+      </ul>
+      <p>Bu durumlarda da paylaşım, gerekli olanla sınırlı tutulur ve mümkünse önce seninle konuşulur.</p>
+
+      <h2>4. Randevu, iptal ve ücret</h2>
+      <ul>
+        <li>Ücret ve görüşme sıklığı ön görüşmede birlikte belirlenir.</li>
+        <li>Randevunu en az 24 saat önce iptal edebilir ya da başka bir saate alabilirsin.</li>
+        <li>Haber verilmeden katılınmayan görüşmeler yapılmış sayılabilir.</li>
+        <li>Bağlantı sorunu yaşanırsa görüşme aynı gün içinde tamamlanır ya da yeniden planlanır.</li>
+      </ul>
+
+      <h2>5. Kişisel veriler</h2>
+      <p>Paylaştığın ad, iletişim bilgisi ve görüşme notları yalnızca danışmanlık sürecini yürütmek için kullanılır ve üçüncü kişilerle paylaşılmaz. Bu bilgiler, süreç sona erdikten <strong>1 yıl sonra</strong> silinir. Ayrıntılar için <a href="/bilgilendirme">Bilgilendirme ve gizlilik</a> sayfasına bakabilirsin.</p>
+
+      <h2>6. Sürecin sonlandırılması</h2>
+      <p>Çalışmayı istediğin zaman, gerekçe göstermeden bırakabilirsin. Sürecin sana yararlı olmadığını düşünürsem bunu seninle açıkça konuşur, gerekirse başka bir uzmana yönlendiririm.</p>
+
+      <h2>7. Acil durumlar</h2>
+      <p>Bu hizmet acil destek hizmeti değildir. Acil bir durumda 112'yi ara ya da en yakın sağlık kuruluşuna başvur.</p>
+
+      <div class="onay-blok">
+        <h2>Onay</h2>
+        <div class="onay-alan">
+          <label class="kutucuk"><input type="checkbox" name="okudum" required> <span>Yukarıdaki bilgileri okudum ve anladım.</span></label>
+          <label class="kutucuk"><input type="checkbox" name="gizlilik" required> <span>Gizliliğin sınırlarını ve kişisel verilerimin nasıl kullanılacağını anladım.</span></label>
+          <label class="kutucuk"><input type="checkbox" name="kabul" required> <span>Bu koşullarla danışmanlık sürecine başlamayı kabul ediyorum.</span></label>
+
+          <div class="ikili">
+            <div class="alan-k"><label for="ad">Danışanın adı soyadı</label><input id="ad" name="ad" autocomplete="name" required></div>
+            <div class="alan-k"><label for="tarih">Tarih</label><input id="tarih" name="tarih" type="date" required></div>
+            <div class="alan-k"><label for="tel">Telefon <small>(isteğe bağlı)</small></label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
+            <div class="alan-k"><label for="eposta">E-posta <small>(isteğe bağlı)</small></label><input id="eposta" name="eposta" type="email" autocomplete="email"></div>
+          </div>
+
+          <div class="alan-k">
+            <div class="imza-ust"><label>Danışanın imzası</label><button class="baglanti" type="button" data-temizle="imza1">Temizle</button></div>
+            <div class="imza-cerceve" id="imza1"><canvas></canvas><img alt=""><span class="ipucu">Parmağınla ya da fareyle imzala</span></div>
+          </div>
+
+          <label class="kutucuk"><input type="checkbox" id="kucuk"> <span>18 yaşından küçüğüm; velim de formu imzalayacak.</span></label>
+
+          <div class="veli-alan onay-alan" id="veli" hidden>
+            <div class="ikili">
+              <div class="alan-k"><label for="veliad">Velinin adı soyadı</label><input id="veliad" name="veliad"></div>
+              <div class="alan-k"><label for="velitel">Velinin telefonu</label><input id="velitel" name="velitel" type="tel"></div>
+            </div>
+            <label class="kutucuk"><input type="checkbox" name="velionay" id="velionay"> <span>Veli olarak yukarıdaki bilgileri okudum ve çocuğumun danışmanlık sürecine katılmasına onay veriyorum.</span></label>
+            <div class="alan-k">
+              <div class="imza-ust"><label>Velinin imzası</label><button class="baglanti" type="button" data-temizle="imza2">Temizle</button></div>
+              <div class="imza-cerceve" id="imza2"><canvas></canvas><img alt=""><span class="ipucu">Parmağınla ya da fareyle imzala</span></div>
+            </div>
+          </div>
+
+          <div class="danisman-imza">Danışman: Enes Alkan, Psk. Danışman · İmza</div>
+        </div>
+      </div>
+
+      <div class="islem">
+        <p class="uyari-k" id="uyari" hidden>Lütfen işaretli kutuları, adını ve imzanı tamamla.</p>
+        <button class="dugme tam" type="submit">PDF olarak kaydet ya da yazdır</button>
+        <a class="dugme ikincil tam" id="gonder" href="#" target="_blank" rel="noopener">PDF'i WhatsApp'tan gönder</a>
+      </div>
+    </form>
+  </div>
+</main>
+<footer class="alt">
+  <div class="kap dar"><a href="/bilgilendirme">Bilgilendirme ve gizlilik</a></div>
+</footer>
+<script src="/formlar.js?v=28"></script>
+<script>
+(function () {
+  var site = window.SITE || {};
+  var form = document.getElementById("onam");
+  var t = document.getElementById("tarih");
+  var d = new Date(); t.value = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  document.getElementById("gonder").href = "https://wa.me/" + site.whatsapp + "?text=" + encodeURIComponent("Merhaba, onam formunu doldurdum. PDF dosyasını ekte gönderiyorum.");
+
+  // İmza alanları
+  var imzalar = {};
+  ["imza1", "imza2"].forEach(function (id) {
+    var kutu = document.getElementById(id), c = kutu.querySelector("canvas"), x = c.getContext("2d");
+    var ciziyor = false, dolu = false;
+    function boyut() {
+      var r = c.getBoundingClientRect(), o = window.devicePixelRatio || 1, eski = dolu ? c.toDataURL() : null;
+      if (!r.width) return;
+      c.width = r.width * o; c.height = r.height * o; x.setTransform(o, 0, 0, o, 0, 0);
+      x.lineWidth = 2.2; x.lineCap = "round"; x.lineJoin = "round"; x.strokeStyle = "#0b1736";
+      if (eski) { var im = new Image(); im.onload = function () { x.drawImage(im, 0, 0, r.width, r.height); }; im.src = eski; }
+    }
+    function nokta(e) { var r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+    c.addEventListener("pointerdown", function (e) { ciziyor = true; c.setPointerCapture(e.pointerId); var p = nokta(e); x.beginPath(); x.moveTo(p[0], p[1]); x.lineTo(p[0] + .1, p[1] + .1); x.stroke(); dolu = true; kutu.classList.remove("hata"); kutu.querySelector(".ipucu").hidden = true; });
+    c.addEventListener("pointermove", function (e) { if (!ciziyor) return; var p = nokta(e); x.lineTo(p[0], p[1]); x.stroke(); });
+    ["pointerup", "pointercancel"].forEach(function (o) { c.addEventListener(o, function () { ciziyor = false; }); });
+    window.addEventListener("resize", boyut);
+    imzalar[id] = { boyut: boyut, dolu: function () { return dolu; }, resim: function () { kutu.querySelector("img").src = dolu ? c.toDataURL("image/png") : ""; },
+      temizle: function () { x.clearRect(0, 0, c.width, c.height); dolu = false; kutu.querySelector(".ipucu").hidden = false; } };
+    boyut();
+  });
+  document.querySelectorAll("[data-temizle]").forEach(function (b) { b.onclick = function () { imzalar[b.getAttribute("data-temizle")].temizle(); }; });
+
+  var kucuk = document.getElementById("kucuk"), veli = document.getElementById("veli");
+  kucuk.onchange = function () {
+    veli.hidden = !kucuk.checked;
+    ["veliad", "velionay"].forEach(function (id) { document.getElementById(id).required = kucuk.checked; });
+    if (kucuk.checked) imzalar.imza2.boyut();
+  };
+
+  form.addEventListener("input", function (e) { e.target.classList.remove("hata"); var k = e.target.closest(".kutucuk"); if (k) k.classList.remove("hata"); });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var eksik = false;
+    form.querySelectorAll("[required]").forEach(function (el) {
+      var bos = el.type === "checkbox" ? !el.checked : !el.value.trim();
+      (el.closest(".kutucuk") || el).classList.toggle("hata", bos);
+      if (bos) eksik = true;
+    });
+    [["imza1", true], ["imza2", kucuk.checked]].forEach(function (k) {
+      if (k[1] && !imzalar[k[0]].dolu()) { document.getElementById(k[0]).classList.add("hata"); eksik = true; }
+    });
+    document.getElementById("uyari").hidden = !eksik;
+    if (eksik) { var ilk = form.querySelector(".hata"); if (ilk) ilk.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    imzalar.imza1.resim(); imzalar.imza2.resim();
+    var ad = document.getElementById("ad").value.trim();
+    var eskiBaslik = document.title;
+    document.title = "Onam formu - " + ad;
+    setTimeout(function () { window.print(); document.title = eskiBaslik; }, 60);
+  });
+})();
+</script>
+</body>
+</html>
