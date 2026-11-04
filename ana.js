@@ -18,27 +18,6 @@
   });
   document.querySelectorAll("[data-kelime]").forEach(function (s) { s.textContent = site.dmKelimesi; });
 
-  // Google Takvim müsaitlik takvimi: SITE.randevu doluysa [data-takvim] alanlarına yerleştirilir
-  var gomulu = window.takvimGomme = function (link) {
-    if (!link || link.indexOf("calendar.google.com/calendar/appointments") < 0) return null;
-    return link + (link.indexOf("gv=true") < 0 ? (link.indexOf("?") < 0 ? "?" : "&") + "gv=true" : "");
-  };
-  document.querySelectorAll("[data-takvim]").forEach(function (kutu) {
-    if (!site.randevu) return;
-    var bolum = kutu.closest("[data-takvim-bolum]");
-    if (bolum) bolum.hidden = false;
-    var src = gomulu(site.randevu);
-    if (src) {
-      var f = document.createElement("iframe");
-      f.src = src; f.title = "Müsait saatler"; f.loading = "lazy";
-      kutu.appendChild(f);
-    }
-    var a = document.createElement("a");
-    a.className = src ? "baglanti" : "dugme tam";
-    a.href = site.randevu; a.target = "_blank"; a.rel = "noopener";
-    a.textContent = src ? "Takvimi yeni sekmede aç" : "Müsait saatleri gör ve randevu al";
-    kutu.appendChild(a);
-  });
   document.querySelectorAll("[data-yil]").forEach(function (s) { s.textContent = "© " + new Date().getFullYear(); });
 
   var liste = document.getElementById("form-listesi");
@@ -121,7 +100,7 @@
   }
 })();
 
-/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi takvime ya da WhatsApp'a yönlendirir. Yanıtlar hiçbir yere gönderilmez. */
+/* Ön görüşme sihirbazı: birkaç soruyla öğrenciyi WhatsApp'a yönlendirir. Yanıtlar hiçbir yere gönderilmez. */
 (function () {
   var site = window.SITE || {};
   var dugmeler = document.querySelectorAll("[data-planla]");
@@ -219,11 +198,8 @@
       setTimeout(function () { g.focus(); }, 30);
     } else {
       var kucuk = durum.kim !== "buyuk";
-      var takvim = !kucuk && site.randevu;
-      ust(takvim ? "Takvimden sana uyan saati seç" : "Bana WhatsApp'tan yaz", 4);
-      kutu.appendChild(el("p", "s-not", takvim
-        ? "15 dakikalık ön görüşme ücretsizdir ve Google Meet üzerinden yapılır. Randevu notuna aşağıdaki mesajı ekleyebilirsin."
-        : kucuk
+      ust("Bana WhatsApp'tan yaz", 4);
+      kutu.appendChild(el("p", "s-not", kucuk
           ? "18 yaş altındaki öğrencilerle ön görüşmeyi velinin bilgisi ve onayıyla planlıyorum. Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, saati birlikte belirleyelim."
           : "Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, ön görüşme saatini birlikte belirleyelim."));
       var m = mesaj();
@@ -235,11 +211,10 @@
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(m).then(tamam, secip); else secip();
         function secip() { var r = document.createRange(); r.selectNodeContents(pre); var se = getSelection(); se.removeAllRanges(); se.addRange(r); kop.textContent = "Seçildi, kopyala"; }
       };
-      var git = el("a", "dugme tam", takvim ? "Takvimi aç" : "WhatsApp'tan yaz");
-      git.href = takvim ? site.randevu : wa(m); git.target = "_blank"; git.rel = "noopener";
+      var git = el("a", "dugme tam", "WhatsApp'tan yaz");
+      git.href = wa(m); git.target = "_blank"; git.rel = "noopener";
       kutu.appendChild(git);
       kutu.appendChild(kop);
-      if (takvim) { var ig = el("a", "baglanti", "WhatsApp'tan yazmayı tercih ederim"); ig.href = wa(m); ig.target = "_blank"; ig.rel = "noopener"; kutu.appendChild(ig); }
       geri();
     }
     var ilk = kutu.querySelector(".s-secenek, .s-girdi, .dugme");
