@@ -288,7 +288,7 @@ html.akici { scroll-behavior: auto; }
 
 /* ---- Alt bilgi ---- */
 .ayak { padding: 48px 0 28px; background: var(--zemin); }
-.ayak-izgara { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 30px; }
+.ayak-izgara { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 30px; }
 .ayak-izgara > div { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
 .ayak-izgara p { margin: 4px 0; font-size: 14px; max-width: 300px; }
 .ayak h4 { margin: 0 0 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--baslik); }

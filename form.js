@@ -56,8 +56,8 @@
     p.appendChild(el("div", "alt-baslik", form.altBaslik));
     p.appendChild(el("p", null, form.giris));
     p.appendChild(el("div", "not",
-      "Bu form bir psikolojik test ya da tanı aracı değildir; kendi durumunu fark etmen için hazırlanmış bir değerlendirmedir. " +
-      "Yanıtların kaydedilmez ve kimseyle paylaşılmaz; sonuç yalnızca senin ekranında hesaplanır."));
+      "Bu form, şu anki durumunu görmen ve sonucunu paylaşırsan ön görüşmede nereden başlayacağımızı belirlemek için hazırlandı. Tanı koymaz. " +
+      "Yanıtların kaydedilmez; sonuç yalnızca senin ekranında hesaplanır."));
     var b = el("button", "dugme tam", "Başla");
     b.type = "button";
     b.onclick = function () { soru(0); };
