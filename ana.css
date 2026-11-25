@@ -367,3 +367,22 @@ html.akici { scroll-behavior: auto; }
   .z-tarih { padding-top: 0; }
   .zaman li::before { top: 2px; }
 }
+
+.kapsam { margin: 20px 0 0; padding: 12px 16px; border-left: 3px solid var(--vurgu); background: var(--kart); border-radius: 0 12px 12px 0; font-size: 14.5px; color: var(--soluk); }
+
+/* ---- Ücretlendirme ---- */
+.fiyatlar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; align-items: stretch; }
+.fiyat { position: relative; display: flex; flex-direction: column; background: var(--kart); border: 1px solid var(--cizgi); border-radius: 20px; padding: 26px; box-shadow: 0 6px 0 var(--cizgi), 0 18px 30px rgba(11, 23, 54, .06); }
+.fiyat .f-etiket { align-self: flex-start; font-size: 12.5px; font-weight: 700; color: var(--ana); background: var(--ana-acik); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; }
+.fiyat h3 { font-size: 20px; margin: 0; color: var(--baslik); }
+.f-tutar { font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: var(--baslik); margin-top: 8px; line-height: 1.1; }
+.f-alt { margin: 4px 0 0; font-size: 14px; font-weight: 600; color: var(--soluk); }
+.fiyat ul { list-style: none; padding: 0; margin: 18px 0 22px; display: grid; gap: 8px; align-content: start; font-size: 15px; color: var(--metin); flex: 1; }
+.fiyat li { position: relative; padding-left: 24px; }
+.fiyat li::before { content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 7px; border-left: 2.5px solid var(--vurgu); border-bottom: 2.5px solid var(--vurgu); transform: rotate(-45deg); }
+.fiyat.one { background: linear-gradient(150deg, var(--ana), var(--koyu)); border-color: var(--ana); box-shadow: 0 6px 0 var(--koyu), 0 24px 40px rgba(11, 23, 54, .22); }
+.fiyat.one h3, .fiyat.one .f-tutar, .fiyat.one ul { color: #fff; }
+.fiyat.one .f-alt { color: rgba(255,255,255,.75); }
+.fiyat.one .f-etiket { background: rgba(255,255,255,.16); color: #fff; }
+.fiyat.one li::before { border-color: #9bb6ee; }
+@media (max-width: 900px) { .fiyatlar { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; } }

@@ -200,7 +200,7 @@
       var kucuk = durum.kim !== "buyuk";
       ust("Bana WhatsApp'tan yaz", 4);
       kutu.appendChild(el("p", "s-not", kucuk
-          ? "18 yaş altındaki öğrencilerle ön görüşmeyi velinin bilgisi ve onayıyla planlıyorum. Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, saati birlikte belirleyelim."
+          ? "Görüşmelere yalnızca sen katılırsın; 18 yaşından küçüksen haftalık çalışmaya başlamadan önce velinin onayını alırım. Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, saati birlikte belirleyelim."
           : "Düğmeye dokununca aşağıdaki mesaj WhatsApp'ta hazır açılır; gönder, ön görüşme saatini birlikte belirleyelim."));
       var m = mesaj();
       var pre = el("pre", "s-mesaj", m);
